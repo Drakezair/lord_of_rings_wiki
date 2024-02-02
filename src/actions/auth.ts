@@ -12,6 +12,7 @@ export async function validateSession() {
 }
 
 export async function signInAction(prevState: any, formData: FormData) {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   const { user, password } = Object.fromEntries(formData);
   if (user === "smeagol" && password === "gollum") {
     cookies().set("auth", "smeagol");

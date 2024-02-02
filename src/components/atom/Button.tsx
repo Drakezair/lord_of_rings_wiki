@@ -6,7 +6,8 @@ type ButtonProps = Readonly<{
   onClick?: () => void;
   link?: string;
   type?: "button" | "submit" | "reset";
-}>;
+}> &
+  React.HTMLProps<HTMLButtonElement>;
 
 export default function Button({
   children,
@@ -14,12 +15,14 @@ export default function Button({
   onClick,
   type,
   link,
+  ...props
 }: ButtonProps): JSX.Element {
   if (link)
     return (
       <Link href={link}>
         <button
           className={`bg-tertiary text-quinary font-semibold py-2 px-4 rounded-md ${className}`}
+          {...props}
         >
           {children}
         </button>

@@ -1,7 +1,16 @@
 "use client";
 import { signInAction } from "@/actions/auth";
 import { Button, Input, Title, Text } from "@/components/atom";
-import { useFormState } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  return (
+    <Button className="mt-3" disabled={pending}>
+      {pending ? "Loading" : "Sign In"}
+    </Button>
+  );
+}
 
 export default function Page() {
   const [state, formAction] = useFormState(signInAction, { message: "" });
@@ -16,9 +25,7 @@ export default function Page() {
         <Input required id="user" type="text" placeholder="User" />
         <Input required id="password" type="password" placeholder="Password" />
         <Text className="text-red-600 mt-3">{state?.message}</Text>
-        <Button type="submit" className="mt-3">
-          Sign In
-        </Button>
+        <SubmitButton />
       </form>
     </div>
   );
