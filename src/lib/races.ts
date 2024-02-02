@@ -57,7 +57,7 @@ export const racesInfo: IRace[] = [
   },
 
   {
-    img: "/img/races/Orc.jpeg",
+    img: "/img/races/orc.jpeg",
     name: "Orc",
     description:
       "Orcs were the primary foot soldiers of the Dark Lords' armies and sometimes the weakest (but most numerous) of their servants.",
