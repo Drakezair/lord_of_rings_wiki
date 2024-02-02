@@ -10,6 +10,7 @@ global.fetch = vi.fn();
 
 describe("api", () => {
   test("getCharacters", async () => {
+    // @ts-expect-error
     fetch.mockResolvedValue({
       json: async () => [
         {
@@ -28,6 +29,7 @@ describe("api", () => {
   });
 
   test("getCharacterById", async () => {
+    // @ts-ignore
     fetch.mockResolvedValue({
       json: async () => ({
         _id: "1",
@@ -42,6 +44,7 @@ describe("api", () => {
   });
 
   test("getQuoteByCharacterId", async () => {
+    // @ts-ignore
     fetch.mockResolvedValue({
       json: async () => [
         {
@@ -60,6 +63,7 @@ describe("api", () => {
   });
 
   test("getQouteById", async () => {
+    // @ts-ignore
     fetch.mockResolvedValue({
       json: async () => ({
         _id: "1",
