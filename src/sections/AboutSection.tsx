@@ -15,7 +15,7 @@ export default function AboutSection(): JSX.Element {
             delve deeper into the lore that has captivated millions around the
             globe.
           </Text>
-          <Button className="mt-10" link="/characters">Explore Characters</Button>
+          <Button className="mt-10" link="/auth/sign-in">Explore Characters</Button>
         </span>
         <Image
           src="/img/section_about.png"
