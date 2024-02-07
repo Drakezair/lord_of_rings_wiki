@@ -11,7 +11,7 @@ export default function SignOutPage() {
     document.cookie =
       "auth" + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
     router.push("/");
-  }, []);
+  }, [router]);
 
   return <div className="fixed top-0 left-0 h-screen w-screen bg-black"></div>;
 }
