@@ -1,10 +1,17 @@
 "use server";
 
+import ClientApi from "@/lib/clienAPi";
 import { CharacterFilters, IApiCharacters, IApiQuotes } from "@/types/api";
+
+const client = new ClientApi({
+  api: process.env.NEXT_PUBLIC_API_URL || "",
+  headers: {
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
+  },
+});
 
 export async function getCharacters({
   limit = "10",
-  offset = "0",
   page = "1",
   name,
   race,
@@ -19,16 +26,7 @@ export async function getCharacters({
     params.set("race", race);
   }
 
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/character?${params.toString()}`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
-      },
-    }
-  );
-  const data = await response.json();
-  return data;
+  return await client.get(`/character?${params.toString()}`);
 }
 
 export async function getCharacterById({
@@ -36,16 +34,7 @@ export async function getCharacterById({
 }: {
   id: string;
 }): Promise<IApiCharacters> {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/character/${id}`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
-      },
-    }
-  );
-  const data = await response.json();
-  return data;
+  return await client.get(`/character/${id}`);
 }
 
 export async function getQuoteByCharacterId({
@@ -53,16 +42,7 @@ export async function getQuoteByCharacterId({
 }: {
   id: string;
 }): Promise<IApiQuotes> {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/character/${id}/quote`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
-      },
-    }
-  );
-  const data = await response.json();
-  return data;
+  return await client.get(`/character/${id}/quote`);
 }
 
 export async function getQouteById({
@@ -70,16 +50,7 @@ export async function getQouteById({
 }: {
   id: string;
 }): Promise<IApiQuotes> {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/quote/${id}`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
-      },
-    }
-  );
-  const data = await response.json();
-  return data;
+  return await client.get(`/quote/${id}`);
 }
 
 /*
